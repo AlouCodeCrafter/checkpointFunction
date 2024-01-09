@@ -1,0 +1,40 @@
+// Fonction pour calculer le produit scalaire de deux vecteurs
+FUNCTION dot_product(x, y: ARRAY[0..N-1] OF INTEGER): INTEGER
+VAR
+    i, ps: INTEGER; // Déclarer i pour l'itération, ps pour stocker le résultat du produit scalaire
+BEGIN
+    ps := 0; // Initialiser le produit scalaire à zéro
+    FOR i FROM 0 TO N-1 STEP 1  DO
+        ps := ps + x[i] * y[i]; // Calculer le produit scalaire en sommant les produits des composantes correspondantes
+    END_FOR
+    RETURN ps; // Retourner le résultat du produit scalaire
+END
+
+// Algorithme principal
+ALGORITHM main
+VAR
+    n, i: INTEGER; // Déclarer la dimension du vecteur et un indice de boucle
+    x, y: ARRAY[0..N-1] OF INTEGER; // Déclarer deux vecteurs de dimension N
+BEGIN
+    Write("Donnez la dimension du vecteur");
+    Read(n);
+
+    // Saisie des éléments du vecteur x
+    FOR i FROM 0 TO n-1 STEP 1 DO
+        Write("Donnez les éléments du vecteur x à la position ", i);
+        Read(x[i]);
+    END_FOR
+
+    // Saisie des éléments du vecteur y
+    FOR i FROM 0 TO n-1 STEP 1 DO
+        Write("Donnez les éléments du vecteur y à la position ", i);
+        Read(y[i]);
+    END_FOR
+
+    // Appel de la fonction dot_product pour calculer le produit scalaire
+    IF (dot_product(x, y) = 0) THEN
+        Write("Ces deux vecteurs sont orthogonaux");
+    ELSE
+        Write("Ces deux vecteurs ne sont pas orthogonaux");
+    END_IF
+END
